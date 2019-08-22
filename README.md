@@ -1,7 +1,5 @@
 # Intelephense
 
-### [Support on Patreon](https://www.patreon.com/bmewburn)
-
 Intelephense is a PHP language server adhering to the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specification).
 
 ### Installation

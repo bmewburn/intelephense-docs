@@ -40,7 +40,8 @@ interface InitialisationOptions {
 ```
 
 ### Capabilities
-
+<details>
+	<summary>Server capabilities JSON returned from `initialize` request.</summary>
 ```javascript
 {
 	textDocumentSync: TextDocumentSyncKind.Incremental,
@@ -81,10 +82,11 @@ interface InitialisationOptions {
 	typeDefinitionProvider: true		//With licence key only. Dynamic registration if available.
 }
 ```
+</details>
 
 ### Configuration Options
 <details>
-	<summary>workspace/configuration JSON schema</summary>
+	<summary>JSON schema for `workspace/configuration` request data</summary>
 	
 ```json
 {

@@ -2,36 +2,12 @@
 
 Intelephense is a PHP language server adhering to the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specification).
 
+### Requirements
+[Node.js 12+](https://nodejs.org)
+
 ### Installation
 ```
 npm i intelephense -g
-```
-
-### Capabilities
-
-```javascript
-{
-	textDocumentSync: TextDocumentSyncKind.Incremental,
-	documentSymbolProvider: true,
-	workspaceSymbolProvider: true,
-	completionProvider: {
-		triggerCharacters: [
-			//php
-			'$', '>', ':', '\\',
-			//registered to enable request forwarding to html/js/css language servers
-			'.', '<', '/'
-		],
-		resolveProvider: true
-	},
-	signatureHelpProvider: {
-		triggerCharacters: ['(', ',']
-	},
-	definitionProvider: true,
-	documentRangeFormattingProvider: true,
-	referencesProvider: true,
-	hoverProvider: true,
-	documentHighlightProvider: true
-}
 ```
 
 ### Run
@@ -55,7 +31,7 @@ interface InitialisationOptions {
     globalStoragePath?: string;
     
     //Optional licence key or absolute path to a text file containing the licence key.
-    //Licence key can be provided here if client does not support workspace/configuration requests.
+    //Licence key can be provided here if the client does not support workspace/configuration requests.
     licenceKey?: string;
     
     //Optional flag to clear server state.
@@ -63,8 +39,53 @@ interface InitialisationOptions {
 }
 ```
 
-### Configuration Options
+### Capabilities
 
+```javascript
+{
+	textDocumentSync: TextDocumentSyncKind.Incremental,
+	documentSymbolProvider: true,
+	workspaceSymbolProvider: true,
+	completionProvider: {
+		triggerCharacters: [
+			//php
+			'$', '>', ':', '\\', '/',
+			//phpdoc
+			'*',
+			// html/js
+			'.', '<'
+		],
+		resolveProvider: true
+	},
+	signatureHelpProvider: {
+		triggerCharacters: ['(', ',']
+	},
+	definitionProvider: true,
+	documentRangeFormattingProvider: true,
+	referencesProvider: true,
+	hoverProvider: true,
+	documentFormattingProvider: true,	//Dynamic registration if available.
+	documentHighlightProvider: true,	//Dynamic registration if available.
+	workspace: {
+		workspaceFolders: {
+			supported: true,
+			changeNotifications: true
+		}
+	},
+	foldingRangeProvider: true,		//With licence key only. Dynamic registration if available.
+	implementationProvider: true,		//With licence key only. Dynamic registration if available.	
+	declarationProvider: true,		//With licence key only. Dynamic registration if available.
+	renameProvider: { 			//With licence key only. Dynamic registration if available.
+		prepareProvider: true 
+	},
+	typeDefinitionProvider: true		//With licence key only. Dynamic registration if available.
+}
+```
+
+### Configuration Options
+<details>
+	<summary>workspace/configuration options</summary>
+	
 ```json
 {
     "intelephense.files.maxSize": {
@@ -183,10 +204,57 @@ interface InitialisationOptions {
         "description": "Global namespace constants and functions will be fully qualified (prefixed with a backslash).",
         "scope": "window"
     },
+    "intelephense.completion.triggerParameterHints": {
+    	"type": "boolean",
+        "default": true,
+        "description": "Method and function completions will include parentheses and trigger parameter hints.",
+        "scope": "window"
+    },
+    "intelephense.completion.maxItems": {
+    	"type": "number",
+        "default": 100,
+        "description": "The maximum number of completion items returned per request.",
+        "scope": "window"
+    },
     "intelephense.format.enable": {
         "type": "boolean",
         "default": true,
-        "description": "Enables formatting",
+        "description": "Enables formatting.",
+        "scope": "window"
+    },
+    "intelephense.licenceKey": {
+        "type": "string",
+        "description": "Enter your intelephense licence key here to access premium features.",
+        "scope": "application"
+    },
+    "intelephense.telemetry.enabled": {
+    	"type": "boolean",
+        "description": "Anonymous usage and crash data will be sent to Azure Application Insights.",
+        "scope": "window",
+        "default": null
+    },
+    "intelephense.rename.exclude": {
+    	"type": "array",
+        "items": {
+        	"type": "string"
+        },
+        "default": [
+        	"**/vendor/**"
+        ],
+        "description": "Glob patterns to exclude files and folders from having symbols renamed. Rename operation will fail if references and/or definitions are found in excluded files/folders.",
+        "scope": "resource"
+    },
+    "intelephense.environment.documentRoot": {
+    	"type": "string",
+        "description": "The directory of the entry point to the application (index.php). Defaults to the first workspace folder. Used for resolving script inclusion.",
+        "scope": "window"
+    },
+    "intelephense.environment.includePaths": {
+    	"type": "array",
+        "items": {
+        	"type": "string"
+        },
+        "description": "The include paths (as individual path items) as defined in the include_path ini setting. Used for resolving script inclusion.",
         "scope": "window"
     },
     "intelephense.trace.server": {
@@ -202,6 +270,7 @@ interface InitialisationOptions {
     }
 }
 ```
+</details>
 
 ### Licence
 This is proprietary software. Please see licence in [LICENSE.txt](https://github.com/bmewburn/intelephense-docs/blob/master/LICENSE.txt).

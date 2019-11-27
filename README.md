@@ -84,7 +84,7 @@ interface InitialisationOptions {
 
 ### Configuration Options
 <details>
-	<summary>workspace/configuration options</summary>
+	<summary>workspace/configuration JSON schema</summary>
 	
 ```json
 {

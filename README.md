@@ -48,9 +48,17 @@ Where `{transport}` is one of:
 
 ```typescript
 interface InitialisationOptions {
-    //Optional absolute path to storage dir. Defaults to os.tmpdir()
+    //Optional absolute path to storage dir. Defaults to os.tmpdir().
     storagePath?: string;
-    //Optional flag to clear server state
+    
+    //Optional absolute path to a global storage dir. Defaults to os.homedir().
+    globalStoragePath?: string;
+    
+    //Optional licence key or absolute path to a text file containing the licence key.
+    //Licence key can be provided here if client does not support workspace/configuration requests.
+    licenceKey?: string;
+    
+    //Optional flag to clear server state.
     clearCache?: boolean;
 }
 ```

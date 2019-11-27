@@ -42,6 +42,7 @@ interface InitialisationOptions {
 ### Capabilities
 <details>
 	<summary>Server capabilities JSON returned from `initialize` request.</summary>
+	
 ```javascript
 {
 	textDocumentSync: TextDocumentSyncKind.Incremental,

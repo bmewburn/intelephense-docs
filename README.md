@@ -31,10 +31,12 @@ interface InitialisationOptions {
     globalStoragePath?: string;
     
     //Optional licence key or absolute path to a text file containing the licence key.
-    //Licence key can be provided here if the client does not support workspace/configuration requests.
+    //{os.homedir()}/intelephense/licence.txt will also be checked by 
+    //default if initializationOptions are not exposed by client.
     licenceKey?: string;
     
     //Optional flag to clear server state.
+    //State can also be cleared by deleting {storagePath}/intelephense
     clearCache?: boolean;
 }
 ```

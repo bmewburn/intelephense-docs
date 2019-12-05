@@ -227,7 +227,7 @@ interface InitialisationOptions {
     },
     "intelephense.licenceKey": {
         "type": "string",
-        "description": "Enter your intelephense licence key here to access premium features.",
+        "description": "DEPRECATED. Must be passed in initializationOptions.",
         "scope": "application"
     },
     "intelephense.telemetry.enabled": {

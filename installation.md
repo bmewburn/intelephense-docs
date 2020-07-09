@@ -160,7 +160,8 @@ interface InitialisationOptions {
             "**/node_modules/**",
             "**/bower_components/**",
             "**/vendor/**/{Tests,tests}/**",
-            "**/.history/**"
+            "**/.history/**",
+            "**/vendor/**/vendor/**"
         ],
         "description": "Configure glob patterns to exclude certain files and folders from all language server features. Inherits from files.exclude.",
         "scope": "resource"
@@ -174,6 +175,7 @@ interface InitialisationOptions {
                 "apache",
                 "apcu",
                 "bcmath",
+                "blackfire",
                 "bz2",
                 "calendar",
                 "cassandra",
@@ -186,7 +188,9 @@ interface InitialisationOptions {
                 "curl",
                 "date",
                 "dba",
+                "decimal",
                 "dom",
+                "ds",
                 "enchant",
                 "Ev",
                 "event",
@@ -225,6 +229,7 @@ interface InitialisationOptions {
                 "libsodium",
                 "libxml",
                 "lua",
+                "lzf",
                 "mailparse",
                 "mapscript",
                 "mbstring",
@@ -236,6 +241,7 @@ interface InitialisationOptions {
                 "ming",
                 "mongo",
                 "mongodb",
+                "mosquitto-php",
                 "mqseries",
                 "msgpack",
                 "mssql",
@@ -261,6 +267,7 @@ interface InitialisationOptions {
                 "pdo_sqlite",
                 "pgsql",
                 "Phar",
+                "phpdbg",
                 "posix",
                 "pspell",
                 "pthreads",
@@ -272,6 +279,7 @@ interface InitialisationOptions {
                 "redis",
                 "Reflection",
                 "regex",
+                "rpminfo",
                 "rrd",
                 "SaxonC",
                 "session",
@@ -289,6 +297,7 @@ interface InitialisationOptions {
                 "sqlsrv",
                 "ssh2",
                 "standard",
+                "stats",
                 "stomp",
                 "suhosin",
                 "superglobals",
@@ -593,6 +602,27 @@ interface InitialisationOptions {
         "default": true,
         "description": "Enables reporting of various language constraint errors.",
         "scope": "window"
+    },
+    "intelephense.diagnostics.implementationErrors": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enables reporting of problems associated with method and class implementations. For example, unimplemented methods or method signature incompatibilities.",
+        "scope": "window"
+    },
+    "intelephense.runtime": {
+        "type": "string",
+        "description": "Path to a Node.js executable. Use this if you wish to use a different version of Node.js. Defaults to Node.js shipped with VSCode.",
+        "scope": "machine"
+    },
+    "intelephense.maxMemory": {
+        "type": "number",
+        "description": "Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.",
+        "scope": "window"
+    },
+    "intelephense.licenceKey": {
+        "type": "string",
+        "description": "DEPRECATED. Don't use this. Go to command palette and search for enter licence key.",
+        "scope": "application"
     },
     "intelephense.telemetry.enabled": {
         "type": "boolean",

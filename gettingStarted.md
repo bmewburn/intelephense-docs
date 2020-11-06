@@ -71,7 +71,7 @@ There may be files you do not want to indexed by Intelephense. It is important i
 Sometimes symbol definitions are not in your workspace but are core PHP symbols or defined in an extension. For this reason Intelephense includes stub definitions for many of these. Extensions that are bundled with PHP are enabled by default. You can configure what other symbols are available in your environment with the `intelephense.stubs` option.
 
 <details>
-<summary>intelephense.stubs</summary
+<summary>intelephense.stubs</summary>
 
 ```json
 {

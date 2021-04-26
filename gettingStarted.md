@@ -462,7 +462,7 @@ Sometimes there may be type annotations in libraries or project files that do no
 You may also see several non standard types in hovers.
 
 * `unset` - the type given to variables that are undefined or `unset()`.
-* `exit` - the type returned from a function that does not terminate normally (eg `die()`) or that represents an impossibility.
+* `never` - the type returned from a function that does not terminate normally (eg `die()`) or that represents an impossibility (added in PHP 8.1).
 
 ### Framework Support
 
